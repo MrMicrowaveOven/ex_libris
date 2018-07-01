@@ -12,10 +12,4 @@
 
 ActiveRecord::Schema.define(version: 20180701191808) do
 
-  create_table "books", force: :cascade do |t|
-    t.string "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
 end
