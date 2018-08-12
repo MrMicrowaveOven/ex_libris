@@ -1,21 +1,38 @@
-h1 Listing books
+h1.header Listing books
 
 table
   thead
     tr
-      th Title
+      th.header Title
       th
       th
       th
-
   tbody
-    - @books.each do |book|
-      tr
-        td = book.title
-        td = link_to 'Show', book
-        td = link_to 'Edit', edit_book_path(book)
-        td = link_to 'Destroy', book, data: { confirm: 'Are you sure?' }, method: :delete
+    .beginning-of-page
+      - @books.each do |book|
+        tr
+          td = book.title
+          td
+            img src='https://api.qrserver.com/v1/create-qr-code?data=HelloWorld&size=100x100'
+          td.link = link_to 'Show', book
+          td.link = link_to 'Edit', edit_book_path(book)
+          td.link = link_to 'Destroy', book, data: { confirm: 'Are you sure?' }, method: :delete
 
 br
 
-= link_to 'New Book', new_book_path
+.link = link_to 'New Book', new_book_path
+
+scss:
+
+  @page {
+    size: 8.5in 11in;
+  }
+
+  @media print {
+    .beginning-of-page {
+      page-break-before: always;
+    }
+    .header, .link {
+      display: none;
+    }
+  }
