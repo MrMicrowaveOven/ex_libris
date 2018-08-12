@@ -8,15 +8,24 @@ table
       th
       th
   tbody
-    .beginning-of-page
-      - @books.each do |book|
-        tr
-          td = book.title
-          td
-            img src='https://api.qrserver.com/v1/create-qr-code?data=HelloWorld&size=100x100'
-          td.link = link_to 'Show', book
-          td.link = link_to 'Edit', edit_book_path(book)
-          td.link = link_to 'Destroy', book, data: { confirm: 'Are you sure?' }, method: :delete
+    .page
+      - @books.each_with_index do |book, index|
+        - if index % 2 == 0
+          tr.left.book
+            td = book.title
+            td
+              img src='https://api.qrserver.com/v1/create-qr-code?data=HelloWorld&size=100x100'
+            td.link = link_to 'Show', book
+            td.link = link_to 'Edit', edit_book_path(book)
+            td.link = link_to 'Destroy', book, data: {confirm: 'Are you sure?'}, method: :delete
+        - else
+          tr.right.book
+            td = book.title
+            td
+              img src='https://api.qrserver.com/v1/create-qr-code?data=HelloWorld&size=100x100'
+            td.link = link_to 'Show', book
+            td.link = link_to 'Edit', edit_book_path(book)
+            td.link = link_to 'Destroy', book, data: { confirm: 'Are you sure?' }, method: :delete
 
 br
 
@@ -25,14 +34,38 @@ br
 scss:
 
   @page {
+    @page :right {
+      @bottom-right {
+        content: none;
+      }
+    }
     size: 8.5in 11in;
   }
 
   @media print {
-    .beginning-of-page {
-      page-break-before: always;
+    @page {
+      margin: 0;
+    }
+    body {
+      margin: 1.6cm;
     }
     .header, .link {
       display: none;
     }
+  }
+
+  .book {
+    width: 45%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .left {
+    float: left;
+  }
+
+  .right {
+    float: right;
   }
