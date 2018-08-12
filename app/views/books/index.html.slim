@@ -14,7 +14,7 @@ table
           tr.left.book
             td = book.title
             td
-              img src='https://api.qrserver.com/v1/create-qr-code?data=HelloWorld&size=100x100'
+              img src = book.qr
             td.link = link_to 'Show', book
             td.link = link_to 'Edit', edit_book_path(book)
             td.link = link_to 'Destroy', book, data: {confirm: 'Are you sure?'}, method: :delete
@@ -22,7 +22,7 @@ table
           tr.right.book
             td = book.title
             td
-              img src='https://api.qrserver.com/v1/create-qr-code?data=HelloWorld&size=100x100'
+              img src = book.qr
             td.link = link_to 'Show', book
             td.link = link_to 'Edit', edit_book_path(book)
             td.link = link_to 'Destroy', book, data: { confirm: 'Are you sure?' }, method: :delete
