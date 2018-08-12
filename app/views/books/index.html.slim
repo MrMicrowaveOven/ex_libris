@@ -10,25 +10,14 @@ table
   tbody
     .page
       - @books.each_with_index do |book, index|
-        - if index % 2 == 0
-          tr.left.book
-            td = book.title
-            td
-              img.qr src=book.qr
+        tr.book
+          td = book.title
+          td
+            img.qr src=book.qr
 
-            td.link = link_to 'Show', book
-            td.link = link_to 'Edit', edit_book_path(book)
-            td.link = link_to 'Destroy', book, data: {confirm: 'Are you sure?'}, method: :delete
-        - else
-          tr.right.book
-            td = book.title
-            td
-              img.qr src=book.qr
-            td.link = link_to 'Show', book
-            td.link = link_to 'Edit', edit_book_path(book)
-            td.link = link_to 'Destroy', book, data: { confirm: 'Are you sure?' }, method: :delete
-
-
+          td.link = link_to 'Show', book
+          td.link = link_to 'Edit', edit_book_path(book)
+          td.link = link_to 'Destroy', book, data: {confirm: 'Are you sure?'}, method: :delete
 
 br
 .link = link_to 'Import Goodreads List', new_import_path
@@ -37,9 +26,14 @@ br
 javascript:
   var books = document.getElementsByClassName("book");
   for (var i = 0; i < books.length; i++) {
-      if (i === 8 || i === 9) {
-          console.log(books[i].className = books[i].className + " end-of-page")
-      }
+    if (i % 10 === 8 || i % 10 === 9) {
+      books[i].className = books[i].className + " end-of-page"
+    }
+    if (i % 2 == 0) {
+        books[i].className = books[i].className + " left"
+    } else {
+        books[i].className = books[i].className + " right"
+    }
   }
 
 
@@ -52,8 +46,6 @@ scss:
       }
     }
     size: 8.5in 11in;
-
-
   }
 
   @media print {
@@ -69,9 +61,6 @@ scss:
     .book {
       height: 5cm;
     }
-    .end-of-page {
-      page-break-after: always;
-    }
   }
 
   .qr {
@@ -85,6 +74,10 @@ scss:
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
+  }
+
+  .end-of-page {
+    margin-bottom: 125px;
   }
 
   .left {
