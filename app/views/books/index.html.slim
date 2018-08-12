@@ -14,7 +14,7 @@ table
           tr.left.book
             td = book.title
             td
-              img src='https://api.qrserver.com/v1/create-qr-code?data=HelloWorld&size=100x100'
+              img.qr src='https://api.qrserver.com/v1/create-qr-code?data=HelloWorld&size=100x100'
             td.link = link_to 'Show', book
             td.link = link_to 'Edit', edit_book_path(book)
             td.link = link_to 'Destroy', book, data: {confirm: 'Are you sure?'}, method: :delete
@@ -22,14 +22,25 @@ table
           tr.right.book
             td = book.title
             td
-              img src='https://api.qrserver.com/v1/create-qr-code?data=HelloWorld&size=100x100'
+              img.qr src='https://api.qrserver.com/v1/create-qr-code?data=HelloWorld&size=100x100'
             td.link = link_to 'Show', book
             td.link = link_to 'Edit', edit_book_path(book)
             td.link = link_to 'Destroy', book, data: { confirm: 'Are you sure?' }, method: :delete
 
+
+
 br
 
 .link = link_to 'New Book', new_book_path
+
+javascript:
+  var books = document.getElementsByClassName("book");
+  for (var i = 0; i < books.length; i++) {
+      if (i === 8 || i === 9) {
+          console.log(books[i].className = books[i].className + " end-of-page")
+      }
+  }
+
 
 scss:
 
@@ -40,6 +51,8 @@ scss:
       }
     }
     size: 8.5in 11in;
+
+
   }
 
   @media print {
@@ -52,10 +65,21 @@ scss:
     .header, .link {
       display: none;
     }
+    .book {
+      height: 5cm;
+    }
+    .end-of-page {
+      page-break-after: always;
+    }
+  }
+
+  .qr {
+    margin-left: 40px;
+    margin-right: 40px;
   }
 
   .book {
-    width: 45%;
+    width: 50%;
     display: flex;
     flex-direction: row;
     align-items: center;
