@@ -1,0 +1,12 @@
+= form_for @import do |f|
+  - if @import.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@import.errors.count, "error")} prohibited this import from being saved:"
+      ul
+        - @import.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :shelf
+    = f.text_field :shelf
+  .actions = f.submit

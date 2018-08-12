@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180701192625) do
+ActiveRecord::Schema.define(version: 20180812031406) do
 
   create_table "books", force: :cascade do |t|
     t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "isbn"
+  end
+
+  create_table "imports", force: :cascade do |t|
+    t.string "shelf"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

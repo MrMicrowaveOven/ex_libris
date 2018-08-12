@@ -14,7 +14,8 @@ table
           tr.left.book
             td = book.title
             td
-              img.qr src='https://api.qrserver.com/v1/create-qr-code?data=HelloWorld&size=100x100'
+              img.qr src=book.qr
+
             td.link = link_to 'Show', book
             td.link = link_to 'Edit', edit_book_path(book)
             td.link = link_to 'Destroy', book, data: {confirm: 'Are you sure?'}, method: :delete
@@ -22,7 +23,7 @@ table
           tr.right.book
             td = book.title
             td
-              img.qr src='https://api.qrserver.com/v1/create-qr-code?data=HelloWorld&size=100x100'
+              img.qr src=book.qr
             td.link = link_to 'Show', book
             td.link = link_to 'Edit', edit_book_path(book)
             td.link = link_to 'Destroy', book, data: { confirm: 'Are you sure?' }, method: :delete
@@ -30,7 +31,7 @@ table
 
 
 br
-
+.link = link_to 'Import Goodreads List', new_import_path
 .link = link_to 'New Book', new_book_path
 
 javascript:

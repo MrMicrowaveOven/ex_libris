@@ -14,6 +14,9 @@ gem 'slim-rails'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+gem 'goodreads', '~> 0.6.2'
+gem 'rest-client'
+gem 'xml-simple'
 
 group :development, :test do
   gem 'sqlite3'
